@@ -12,12 +12,21 @@
 			<a href="{{product_in_basket.product.get_url}}">
 				{{product_in_basket.product.title}}
 			</a>
-			{{product_in_basket.nmb}} x {{product_in_basket.price_per_item }} =
-			{{product_in_basket.total_amount}}
-			<a href="/orders/basket/delete/" class="delete-item"
-			   data-product_id="{{product_in_basket.product.id}}">X</a>
+			<div class="quantity">
+				<p></p>
+				<div class="pro-qty" class="product-in-basket_nmb_div">
+					<input type="text" class="product-in-basket_nmb" value="{{product_in_basket.nmb}}" name="number"
+					       id="number">
+				</div>
+				x
+				<span class="product-price">{{product_in_basket.price_per_item }}</span> =
+				<span class="total-product-in-basket-amount">
+				{{product_in_basket.total_amount}}
+			</span>
+				<a href="/orders/basket/delete/" class="delete-item"
+				   data-product_id="{{product_in_basket.product.id}}">X</a>
+			</div>
 		</li>
 		{% endfor %}
-	
 	</ul>
 </div>
