@@ -1,0 +1,36 @@
+	<div class="product-item px-1">
+		<div class="pi-pic">
+			{% for image in product.image.all %}
+			{% if image.is_main == True %}
+			<img  style="min-height:400px" src=" {{ image.image.url }}"  alt="">
+			{% endif %}
+			{% endfor %}
+			
+			{% if product.discount %}
+			<div class="tag-sale">{{product.discount.title}}</div>
+			{% if product.discount.image and carusel == False %}
+			<img style="
+				position: absolute;
+				top: -5%;
+				left: -5%;
+				max-height:60px;
+			"  src="{{product.discount.image.url}}">
+			{% endif %}
+			
+			{% endif %}
+			
+			<div class="pi-links">
+				<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+<!--				<a href="#" class="wishlist-btn"><i class="flaticon-right-arrow"></i></a>-->
+				<a href="#" class="wishlist-btn"><i class="flaticon-heart "></i></a>
+			</div>
+		</div>
+		<div class="pi-text">
+			<h6>{{ product.price}}</h6>
+			<a href="{% url 'product_detail'  category_slug=product.category.slug product_slug=product.slug  product_id=product.id %}">
+				<p>{{ product.title }}</p>
+			</a>
+<!--			<h6 class="text-muted"><s>{{ product.price}}</s></h6>-->
+<!--			<p>{{ product.short_description | truncatechars_html:70}}</p>-->
+		</div>
+	</div>

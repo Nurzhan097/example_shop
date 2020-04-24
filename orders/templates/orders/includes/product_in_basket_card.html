@@ -1,0 +1,23 @@
+<div class="shopping_cart">
+	<ul class="sub-menu">
+		{% for product_in_basket in products_in_basket %}
+		<li class="list-group">
+			<div class="pl-thumb">
+				{% for image in product_in_basket.product.image.all %}
+				{% if image.is_main == True %}
+				<img src="{{image.image.url}}" alt="">
+				{% endif %}
+				{% endfor %}
+			</div>
+			<a href="{{product_in_basket.product.get_url}}">
+				{{product_in_basket.product.title}}
+			</a>
+			{{product_in_basket.nmb}} x {{product_in_basket.price_per_item }} =
+			{{product_in_basket.total_amount}}
+			<a href="/orders/basket/delete/" class="delete-item"
+			   data-product_id="{{product_in_basket.product.id}}">X</a>
+		</li>
+		{% endfor %}
+	
+	</ul>
+</div>
